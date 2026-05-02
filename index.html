@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Anh ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 1;
+            max-width: 80%;
+        }
+
+        .cat-gif {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 22px;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            margin-top: 30px;
+            position: relative;
+            height: 60px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #808080;
+            color: white;
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .heart {
+            position: fixed;
+            top: -10px;
+            color: #ff4d4d;
+            font-size: 20px;
+            user-select: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bm…12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" alt="Cat" class="cat-gif">
+        
+        <h1 id="question">Hello anh. Cho em xin lỗi nha. Thật lòng đó ❤️</h1>
+
+        <div class="btn-group">
+            <button id="yesBtn" onclick="thankYou()">Anh đồng ý</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">Hông chịu</button>
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            // Tính toán vị trí ngẫu nhiên nhưng vẫn nằm trong màn hình
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+function thankYou() {
+            // Thay đổi nội dung khi bấm "Anh đồng ý"
+            document.getElementById('mainContainer').innerHTML = `
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bm…pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c76IJLufpN762cl37L/giphy.gif" class="cat-gif">
+                <h1 style="color: #ff4d4d;">Tính em kì quá. Anh đừng để bụng nha. <br> Tập trung cho công việc nè. Cảm ơn anh nhiều ❤️</h1>
+            `;
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
