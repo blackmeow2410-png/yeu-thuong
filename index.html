@@ -36,21 +36,22 @@
 
         h1 {
             color: #ff4d4d;
-            font-size: 20px;
+            font-size: 19px;
             line-height: 1.5;
+            padding: 0 10px;
         }
 
         .btn-group {
-            margin-top: 30px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            min-height: 100px;
+            gap: 15px;
+            min-height: 120px;
         }
 
         button {
-            padding: 12px 20px;
+            padding: 12px 18px;
             font-size: 16px;
             border: none;
             border-radius: 10px;
@@ -62,7 +63,6 @@
         #yesBtn {
             background-color: #ff4d4d;
             color: white;
-            z-index: 100;
         }
 
         #noBtn {
@@ -72,7 +72,7 @@
         }
 
         .footer-text {
-            font-size: 12px;
+            font-size: 11px;
             color: #999;
             margin-top: 20px;
             font-style: italic;
@@ -95,16 +95,15 @@
 <body>
 
     <div class="container" id="mainBox">
-        <img src="https://i.ibb.co/L6S9mDk/cat-sorry.jpg" alt="Cat" class="cat-gif">
+        <!-- Chú mèo "bit lỗi òi mah" -->
+        <img src="https://raw.githubusercontent.com/blackmeow2410-png/yeu-thuong/main/cat-image.jpg" onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bm1oZ3R3eGZ3bm1oZ3R3eGZ3bm1oZ3R3eGZ3bm1oZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif'" class="cat-gif">
         
-        <h1 id="question">A Duyên, em xin lỗi vì hôm qua đã vô lý anh nha. Thiệt lòng đó, ai dựa ý.nhoo ❤️</h1>
+        <h1 id="question">A Duyên, em xin lỗi vì hôm qua đã vô lý với anh. Thiệt lòng đó.Em bị dựa. Ai nói trong đầu em ớ. Hôm nay em soạn lại văn rồi. Anh người lớn đừng chấp con nít nha. Bỏ qua cho em he ❤️</h1>
 
         <div class="btn-group" id="btnGroup">
             <button id="yesBtn" onclick="thankYou()">Anh đồng ý</button>
             <button id="noBtn" onclick="noClicked()">Hông nha</button>
         </div>
-        
-        <div class="footer-text">Cần phụ nói em</div>
     </div>
 
     <script>
@@ -117,23 +116,21 @@
             const yesBtn = document.getElementById('yesBtn');
 
             if (clickCount === 1) {
-                // Lần 1: Nút từ chối nhỏ lại, đổi chữ, nút đồng ý to lên
                 noBtn.innerHTML = "đi màaaa";
                 noBtn.style.transform = "scale(0.8)";
                 yesBtn.style.transform = "scale(1.3)";
             } 
             else if (clickCount === 2) {
-                // Lần 2: Nhỏ hơn nữa, đổi chữ nút đồng ý
                 noBtn.innerHTML = "Thui màaaa";
                 noBtn.style.transform = "scale(0.6)";
                 yesBtn.innerHTML = "Hoàn toàn đồng ý";
-                yesBtn.style.transform = "scale(1.6)";
+                yesBtn.style.transform = "scale(1.7)";
             } 
             else {
-                // Lần 3 trở đi: Chạy lòng vòng
                 if (!isRunning) {
                     isRunning = true;
                     noBtn.style.position = "fixed";
+                    noBtn.innerHTML = "Năn nỉ đóooo";
                 }
                 moveButton();
             }
@@ -147,7 +144,6 @@
             noBtn.style.top = y + 'px';
         }
 
-        // Nếu đã chạy lòng vòng thì di chuột vào cũng chạy
         document.getElementById('noBtn').onmouseover = () => {
             if (isRunning) moveButton();
         };
@@ -155,9 +151,9 @@
         function thankYou() {
             document.getElementById('mainBox').innerHTML = `
                 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eDF4N2t6bzh4cnh3NjV4NXB1cmx4NXB1cmx4NXB1cmx4NXB1cmx4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" class="cat-gif">
-                <h1 style="color: #ff4d4d;">Em cảm ơn. ❤️<br>
-                <span style="font-size: 16px; color: #666;">Để em coi lại tâm trạng đã. Nên anh cũng cứ tập trung làm việc đi nhe. Đừng để bụng nho. Có tiền em mời anh. <br> Đừng để bụng nhaaa</span></h1>
-                <div style="font-size: 12px; color: #999; margin-top: 20px;">Cần phụ nói em</div>
+                <h1 style="color: #ff4d4d;">Em cảm ơn. ❤️<br><br>
+                <span style="font-size: 16px; color: #666; font-weight: normal;">Để em coi lại tâm trạng đã. Có tiền em mời anh lại ha <br> Đừng để bụng nhaaa</span></h1>
+                <div class="footer-text">Cần phụ nói em</div>
             `;
         }
 
