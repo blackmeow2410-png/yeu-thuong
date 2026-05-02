@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi Anh ❤️</title>
+    <title>Gửi A Duyên ❤️</title>
     <style>
         body {
             background-color: #ffe6e6;
@@ -24,46 +24,58 @@
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             z-index: 1;
-            max-width: 80%;
+            max-width: 85%;
+            position: relative;
         }
 
         .cat-gif {
-            width: 200px;
+            width: 220px;
+            border-radius: 15px;
             margin-bottom: 20px;
         }
 
         h1 {
             color: #ff4d4d;
-            font-size: 22px;
+            font-size: 20px;
             line-height: 1.5;
         }
 
         .btn-group {
             margin-top: 30px;
-            position: relative;
-            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 100px;
         }
 
         button {
-            padding: 12px 25px;
-            font-size: 18px;
+            padding: 12px 20px;
+            font-size: 16px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: 0.2s;
             font-weight: bold;
+            transition: all 0.2s ease;
         }
 
         #yesBtn {
             background-color: #ff4d4d;
             color: white;
+            z-index: 100;
         }
 
         #noBtn {
             background-color: #808080;
             color: white;
-            position: absolute;
             white-space: nowrap;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+            font-style: italic;
         }
 
         .heart {
@@ -82,32 +94,70 @@
 </head>
 <body>
 
-    <div class="container" id="mainContainer">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bm…12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" alt="Cat" class="cat-gif">
+    <div class="container" id="mainBox">
+        <img src="https://i.ibb.co/L6S9mDk/cat-sorry.jpg" alt="Cat" class="cat-gif">
         
-        <h1 id="question">Hello anh. Cho em xin lỗi nha. Thật lòng đó ❤️</h1>
+        <h1 id="question">A Duyên, em xin lỗi vì hôm qua đã la anh nha Thiệt lòng đó. :( ai dựa em á, nhoo ❤️</h1>
 
-        <div class="btn-group">
+        <div class="btn-group" id="btnGroup">
             <button id="yesBtn" onclick="thankYou()">Anh đồng ý</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">Hông chịu</button>
+            <button id="noBtn" onclick="noClicked()">Hông nha</button>
         </div>
+        
+        <div class="footer-text">Cần phụ nói em</div>
     </div>
 
     <script>
+        let clickCount = 0;
+        let isRunning = false;
+
+        function noClicked() {
+            clickCount++;
+            const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+
+            if (clickCount === 1) {
+                // Lần 1: Nút từ chối nhỏ lại, đổi chữ, nút đồng ý to lên
+                noBtn.innerHTML = "đi màaaa";
+                noBtn.style.transform = "scale(0.8)";
+                yesBtn.style.transform = "scale(1.3)";
+            } 
+            else if (clickCount === 2) {
+                // Lần 2: Nhỏ hơn nữa, đổi chữ nút đồng ý
+                noBtn.innerHTML = "Thui màaaa";
+                noBtn.style.transform = "scale(0.6)";
+                yesBtn.innerHTML = "Hoàn toàn đồng ý";
+                yesBtn.style.transform = "scale(1.6)";
+            } 
+            else {
+                // Lần 3 trở đi: Chạy lòng vòng
+                if (!isRunning) {
+                    isRunning = true;
+                    noBtn.style.position = "fixed";
+                }
+                moveButton();
+            }
+        }
+
         function moveButton() {
             const noBtn = document.getElementById('noBtn');
-            // Tính toán vị trí ngẫu nhiên nhưng vẫn nằm trong màn hình
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
-            
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
         }
-function thankYou() {
-            // Thay đổi nội dung khi bấm "Anh đồng ý"
-            document.getElementById('mainContainer').innerHTML = `
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bm…pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c76IJLufpN762cl37L/giphy.gif" class="cat-gif">
-                <h1 style="color: #ff4d4d;">Tính em kì quá. Anh đừng để bụng nha. <br> Tập trung cho công việc nè. Cảm ơn anh nhiều ❤️</h1>
+
+        // Nếu đã chạy lòng vòng thì di chuột vào cũng chạy
+        document.getElementById('noBtn').onmouseover = () => {
+            if (isRunning) moveButton();
+        };
+
+        function thankYou() {
+            document.getElementById('mainBox').innerHTML = `
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eDF4N2…12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" class="cat-gif">
+                <h1 style="color: #ff4d4d;">Em cảm ơn. ❤️<br>
+                <span style="font-size: 16px; color: #666;">Để em coi lại tâm trạng đã. Rồi mình làm quen lại nha. <br> Đừng để bụng nhaaa</span></h1>
+                <div style="font-size: 12px; color: #999; margin-top: 20px;">Cần phụ nói em</div>
             `;
         }
 
@@ -118,10 +168,8 @@ function thankYou() {
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 3 + 2 + 's';
             document.body.appendChild(heart);
-
             setTimeout(() => { heart.remove(); }, 5000);
         }
-
         setInterval(createHeart, 300);
     </script>
 </body>
